@@ -1,12 +1,13 @@
 ## 旅游分享网站
 
 ## 资料
-spring-boot  
+(spring-boot)  
 
 thymeleaf 前端模版
 
-https://v3.bootcss.com/   UI框架
+[UI框架](https://v3.bootcss.com/])
 
 ## 工具
+
 git
 
