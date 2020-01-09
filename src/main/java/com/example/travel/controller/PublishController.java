@@ -38,10 +38,10 @@ public class PublishController {
             HttpServletRequest request,
             Model model
     ) {
-        model.addAttribute("title",title);
-        model.addAttribute("description",description);
-        model.addAttribute("tag",tag);
-        if(title==null||title=="") {
+        model.addAttribute("title", title);
+        model.addAttribute("description", description);
+        model.addAttribute("tag", tag);
+        if (title == null || title == "") {
             model.addAttribute("error", "标题不能为空！");
             return "/publish";
         }
@@ -56,18 +56,16 @@ public class PublishController {
 
         User user = null;
         Cookie[] cookies = request.getCookies();
-        if(cookies==null)
-        {
-            model.addAttribute("error", "用户未登录");
-            return "publish";
-        }
-        for (Cookie cookie : cookies) {
-            if (cookie.getName().equals("token")) {
-                String token = cookie.getValue();
-                user = userMapper.findByToken(token);
-                if (user != null) {
-                    request.getSession().setAttribute("user", user);
-                    break;
+
+        if (cookies != null && cookies.length != 0) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("token")) {
+                    String token = cookie.getValue();
+                    user = userMapper.findByToken(token);
+                    if (user != null) {
+                        request.getSession().setAttribute("user", user);
+                        break;
+                    }
                 }
             }
         }
