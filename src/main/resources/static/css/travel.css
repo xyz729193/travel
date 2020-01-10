@@ -2,9 +2,11 @@ body{
     background-color: #efefef;
 }
 .main{
-    background-color: #efefef;
+    background-color: white;
     margin: 30px;
+    padding: 30px;
 }
+
 .btn-publish{
     float: right;
     margin-bottom: 15px;
