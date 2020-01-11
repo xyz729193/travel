@@ -1,7 +1,6 @@
 package com.example.travel.controller;
 
 import com.example.travel.dto.PaginationDTO;
-import com.example.travel.mapper.UserMapper;
 import com.example.travel.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

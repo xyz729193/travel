@@ -11,14 +11,13 @@
 
 [Lombok 自动生成set和get等方法](https://projectlombok.org/features/all)
 
-Interception
-{
-    preHandler()
-    postHandler()
-    afterCompletion()
-}
-
 [学生教育优惠软件](https://github.com/ivmm/Student-resources)
+
+
+```bash
+mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate
+```
+
 
 
 
