@@ -4,6 +4,7 @@ import com.example.travel.dto.PaginationDTO;
 import com.example.travel.dto.QuestionDTO;
 import com.example.travel.exception.CustomizeErrorCode;
 import com.example.travel.exception.CustomizeException;
+import com.example.travel.mapper.QuestionExtMapper;
 import com.example.travel.mapper.QuestionMapper;
 import com.example.travel.mapper.UserMapper;
 import com.example.travel.model.Question;
@@ -19,6 +20,9 @@ import java.util.List;
 
 @Service
 public class QuestionService {
+
+    @Autowired
+    private QuestionExtMapper questionExtMapper;
 
     @Autowired
     private QuestionMapper questionMapper;
@@ -40,13 +44,6 @@ public class QuestionService {
         if (page > totalPage) {
             page = totalPage;
         }
-//
-//        Integer offset = (page - 1) * size;
-//        QuestionExample example = new QuestionExample();
-//        example.createCriteria()
-//                .andCreatorEqualTo(userId);
-//        List<Question> questions = questionMapper.selectByExampleWithRowbounds(example,new RowBounds(offset,size));
-//        List<QuestionDTO> questionDTOList = new ArrayList<>();
 
         Integer offset = (page - 1) * size;
         QuestionExample questionExample = new QuestionExample();
@@ -66,7 +63,7 @@ public class QuestionService {
         return paginationDTO;
     }
 
-    public PaginationDTO listByUserId(Integer userId, Integer page, Integer size) {
+    public PaginationDTO listByUserId(Long userId, Integer page, Integer size) {
 
         QuestionExample questionExample = new QuestionExample();
         questionExample.createCriteria()
@@ -106,7 +103,7 @@ public class QuestionService {
         return paginationDTO;
     }
 
-    public QuestionDTO getById(Integer id) {
+    public QuestionDTO getById(Long id) {
         Question question = questionMapper.selectByPrimaryKey(id);
         if(question ==null){
             throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
@@ -141,14 +138,11 @@ public class QuestionService {
         }
     }
 
-    public void incView(Integer id) {
-        Question question = questionMapper.selectByPrimaryKey(id);
-        Question updateQuestion = new Question();
-        updateQuestion.setViewCount(question.getViewCount()+1);
-        QuestionExample updateExample = new QuestionExample();
-        updateExample.createCriteria()
-                .andIdEqualTo(id);
-        questionMapper.updateByExampleSelective(updateQuestion, updateExample);
+    public void incView(Long id) {
+        Question record = new Question();
+        record.setViewCount(1);
+        record.setId(id);
+        questionExtMapper.incView(record);
 
     }
 }
