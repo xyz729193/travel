@@ -25,3 +25,23 @@ body{
 .profile-section{
     margin-top: 15px;
 }
+
+.menu{
+    color: #9d9d9d;
+    margin-top: 2px;
+}
+
+.menu .icon{
+    margin-right: 6px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.menu .icon:hover{
+    color:#499ef3;
+}
+.comments{
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
